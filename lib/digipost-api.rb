@@ -1,4 +1,9 @@
 require "digipost-api/version"
+require "digipost-api/representations/address"
+require "digipost-api/representations/message"
+require "digipost-api/representations/recipient"
+require "digipost-api/service/api"
+require "digipost-api/service/messages"
 
 module Digipost
   module Api
