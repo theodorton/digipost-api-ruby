@@ -13,7 +13,7 @@ module Digipost::Api::Service
       body << "<authenticationLevel>PASSWORD</authenticaitonLevel>"
       body << "</message>"
       
-      response = post('/messages', {
+      response = self.class.post('/messages', {
         body: body,
         headers: {
           'X-Digipost-Date' => date_header(message.date),
@@ -23,12 +23,11 @@ module Digipost::Api::Service
       })
       
       # Check response!
-      unless response.success?
-        return { result: "Failure" }
-      end
+      puts("Digipush response (new):")
+      puts(response.inspect)
       
       # Upload message attachments
-      post("/relations/messages/#{message.id}", {
+      response = self.class.post("/relations/messages/#{message.id}", {
         body: message.pdf,
         headers: {
           'X-Digipost-Date' => date_header(message.date),
@@ -38,14 +37,16 @@ module Digipost::Api::Service
       end
       
       # Return result/status from API request
-      return { result: "Success!" }
+      puts("Digipush response (create):")
+      puts(response.inspect)
+      return true
     end
     
-    def post(uri, options = {})
+    def self.post(uri, options = {})
       # Sign the request
       date = options[:headers]['X-Digipost-Date']
       options[:headers].merge({
-        'Content-MD5'          => md5_header(options[:body])
+        'Content-MD5'          => md5_header(options[:body]),
         'X-Digipost-Signature' => signature(:post, uri, options[:body], date)
       })
     end
