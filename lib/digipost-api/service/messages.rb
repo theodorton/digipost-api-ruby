@@ -2,7 +2,7 @@ require 'digest/md5'
 
 module Digipost::Api::Service
   class Messages < Api
-    def self.send_message(message)
+    def send_message(message)
       # Create resource at Digipost
       body =  '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
       body << '<message xmlns="http://api.digipost.no/schema/v1">'
@@ -50,7 +50,7 @@ module Digipost::Api::Service
       })
     end
     
-    def self.signature(method, uri, message, date)
+    def signature(method, uri, message, date)
       headers = "#{method.to_s.upcase}\n" +
                 "#{uri.downcase}\n" +
                 "content-md5: #{md5_header(message)}\n" +
@@ -63,11 +63,11 @@ module Digipost::Api::Service
       return Base64.encode64(digest)
     end
     
-    def self.md5_header(payload)
+    def md5_header(payload)
       Digest::MD5.digest(payload)
     end
     
-    def self.date_header(date)
+    def date_header(date)
       # Wed, 29 Jun 2011 14:58:11 GMT
       date.strftime("%a, %e %b %Y %H:%M:%S GMT")
     end
