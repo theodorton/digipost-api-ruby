@@ -3,7 +3,7 @@ module Digipost::Api::Representations
     attr_accessor :id, :recipient, :subject, :authentication_level,
                   :sms_notification, :pdf, :date
     
-    def initialize(attributes)
+    def initialize(attributes = {})
       @recipient = attributes[:recipient]
       @subject   = attributes[:subject]
       @authentication_level = attributes[:authentication_level]
