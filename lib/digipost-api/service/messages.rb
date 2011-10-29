@@ -34,7 +34,6 @@ module Digipost::Api::Service
           'Content-Type'    => 'application/octet-stream'
         }
       })
-      end
       
       # Return result/status from API request
       puts("Digipush response (create):")
