@@ -1,3 +1,5 @@
+require 'httparty'
+
 module Digipost::Api::Service
   class Api
     include HTTParty
