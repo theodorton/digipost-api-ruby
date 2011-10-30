@@ -43,6 +43,8 @@ module Digipost::Api::Service
       body << "<authenticationLevel>PASSWORD</authenticationLevel>"
       body << "</message>"
       
+      puts body
+      
       response = self.class.post('/messages', {
         body: body,
         headers: {
@@ -62,30 +64,32 @@ module Digipost::Api::Service
             post_link = el["uri"].split("digipost.no").last
           end
         end
+        
+        # puts post_link
+
+        # Check response!
+        # puts("Digipush response (new):")
+        # puts(response.body.inspect.split("\n").join("<br />"))
+
+        # Upload message attachments
+        response = self.class.post(post_link, {
+          body: message.pdf,
+          headers: {
+            'Date' => date_header(message.date),
+            'Content-Type'    => 'application/octet-stream'
+          }
+        })
+
+        puts response.body
+
+        # Return result/status from API request
+        # puts("Digipush response (create):")
+        # puts(response.body.inspect.split("\n").join("<br />"))
+        return true
       rescue NoMethodError
         puts response.body.inspect
+        return false
       end
-      # puts post_link
-      
-      # Check response!
-      # puts("Digipush response (new):")
-      # puts(response.body.inspect.split("\n").join("<br />"))
-      
-      # Upload message attachments
-      response = self.class.post(post_link, {
-        body: message.pdf,
-        headers: {
-          'Date' => date_header(message.date),
-          'Content-Type'    => 'application/octet-stream'
-        }
-      })
-      
-      puts response.body
-      
-      # Return result/status from API request
-      # puts("Digipush response (create):")
-      # puts(response.body.inspect.split("\n").join("<br />"))
-      return true
     end
     
     def self.post(uri, options = {})
