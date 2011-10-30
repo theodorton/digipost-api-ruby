@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   # specify any dependencies here; for example:
   s.add_development_dependency "rspec"
   s.add_dependency "httparty", "~>0.7"
+  s.add_dependency "crack"
   s.add_dependency "rsa"
 end

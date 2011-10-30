@@ -3,7 +3,7 @@ require "digipost-api/representations/address"
 require "digipost-api/representations/message"
 require "digipost-api/representations/recipient"
 require "digipost-api/service/api"
-require "digipost-api/service/messages"
+require "digipost-api/service/crypt_api"
 
 module Digipost
   module Api
