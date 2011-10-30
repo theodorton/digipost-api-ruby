@@ -11,9 +11,9 @@ module Digipost::Api::Service
     cattr_accessor :digipost_user, :certificate, :private_key # 179096
     
     def self.configure(digipost_user, certificate, private_key)
-      digipost_user = digipost_user
-      certificate = certificate
-      private_key = private_key
+      @@digipost_user = digipost_user
+      @@certificate = certificate
+      @@private_key = private_key
       # headers({
       #   'Accept' => 'application/vnd.digipost-v1+xml',
       #   'X-Digipost-UserId' => digipost_user
