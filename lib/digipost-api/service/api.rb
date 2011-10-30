@@ -114,7 +114,7 @@ module Digipost::Api::Service
       # puts "DIGEST:#{hash}"
       puts headers
       encrypter = CryptApi.new
-      signature_string = encrypter.encrypt(self.private_key, headers).to_s
+      signature_string = encrypter.encrypt(headers).to_s
       return signature_string 
     end
     
