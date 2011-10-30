@@ -54,14 +54,17 @@ module Digipost::Api::Service
       
       post_link = ""
       
-      # response.body['message'].each_element do |el|   
-      xml = Crack::XML.parse(response.body)
-      xml['message']['link'].each do |el|
-        if el["rel"] == "https://api.digipost.no/relations/add_content_and_send"
-          post_link = el["uri"].split("digipost.no").last
+      # response.body['message'].each_element do |el|  
+      begin 
+        xml = Crack::XML.parse(response.body)
+        xml['message']['link'].each do |el|
+          if el["rel"] == "https://api.digipost.no/relations/add_content_and_send"
+            post_link = el["uri"].split("digipost.no").last
+          end
         end
+      rescue NoMethodError
+        puts response.body.inspect
       end
-      
       # puts post_link
       
       # Check response!
