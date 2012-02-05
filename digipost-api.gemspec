@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Digipost::Api::VERSION
   s.authors     = ["Theodor Tonum"]
   s.email       = ["theodor@tonum.no"]
-  s.homepage    = ""
+  s.homepage    = "http://github.com/theodorton/digipost-api-ruby"
   s.summary     = %q{Ruby API for sending messages through Digipost}
   s.description = %q{Simple Ruby API you can use to send messages through Digipost}
 
