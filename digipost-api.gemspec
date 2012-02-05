@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Digipost::Api::VERSION
   s.authors     = ["Theodor Tonum"]
   s.email       = ["theodor@tonum.no"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://github.com/theodorton/digipost-api-ruby"
+  s.summary     = %q{Ruby API for sending messages through Digipost}
+  s.description = %q{Simple Ruby API you can use to send messages through Digipost}
 
   s.rubyforge_project = "digipost-api"
 
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
   s.add_development_dependency "rspec"
   s.add_dependency "httparty", "~>0.7"
   s.add_dependency "crack"
