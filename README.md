@@ -31,7 +31,8 @@ message.date = Time.now
 message.pdf  = File.read('path/to/your/pdf_file')
 
 # Send the message
-Digipost::Service.send_message(message)
+service = Digipost::Service.new
+service.send_message(message)
 ````
 
 And that should be about it :)
